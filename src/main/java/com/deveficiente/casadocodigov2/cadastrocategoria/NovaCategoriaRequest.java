@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import com.deveficiente.casadocodigov2.compartilhado.Documento;
 import com.deveficiente.casadocodigov2.compartilhado.UniqueValue;
 
-public class NovaCategoriaRequest {
+public class NovaCategoriaRequest implements DadosNovaCategoria {
 
 	@NotBlank
 	//@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
@@ -19,4 +19,8 @@ public class NovaCategoriaRequest {
 		return nome;
 	}
 
+	@Override
+	public Categoria toModel() {
+		return new Categoria(nome);
+	}
 }

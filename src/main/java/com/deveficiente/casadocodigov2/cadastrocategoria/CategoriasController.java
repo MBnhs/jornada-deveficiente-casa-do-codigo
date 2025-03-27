@@ -34,11 +34,11 @@ public class CategoriasController {
 	After:
 	begin
 	 */
-	private CategoriaRepository categoriaRepository;
+	private CadastroNovaCategoria cadastroNovaCategoria;
 
-	public CategoriasController(CategoriaRepository categoriaRepository) {
+	public CategoriasController(CadastroNovaCategoria cadastroNovaCategoria) {
 		super();
-		this.categoriaRepository = categoriaRepository;
+		this.cadastroNovaCategoria = cadastroNovaCategoria;
 	}
 	/*
 	end
@@ -47,11 +47,7 @@ public class CategoriasController {
 	@PostMapping(value = "/categorias")
 	@Transactional
 	public String cria(@RequestBody @Valid NovaCategoriaRequest request) {
-
-		Categoria novaCategoria = new Categoria(request.getNome());
-		categoriaRepository.save(novaCategoria);
-		
-		return novaCategoria.toString();
+		return cadastroNovaCategoria.executa(request).toString();
 	}
 		
 	
