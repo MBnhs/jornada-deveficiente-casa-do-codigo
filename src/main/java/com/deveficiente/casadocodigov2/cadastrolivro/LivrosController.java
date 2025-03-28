@@ -5,6 +5,8 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import com.deveficiente.casadocodigov2.cadastrocategoria.CategoriaRepository;
+import com.deveficiente.casadocodigov2.novoautor.AutorRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,19 +17,28 @@ import com.deveficiente.casadocodigov2.novoautor.Autor;
 @RestController
 public class LivrosController {
 	
-	@PersistenceContext
-	private EntityManager manager;
+	private AutorRepository autorRepository;
+	private CategoriaRepository categoriaRepository;
+	private LivroRepository livroRepository;
+
+	public LivrosController(AutorRepository autorRepository,
+							CategoriaRepository categoriaRepository, LivroRepository livroRepository) {
+		this.autorRepository = autorRepository;
+		this.categoriaRepository = categoriaRepository;
+		this.livroRepository = livroRepository;
+	}
 
 	@PostMapping(value = "/livros")
 	@Transactional
 	//1
 	public String cria(@RequestBody @Valid NovoLivroRequest request) {
 		//1
+
 		Livro novoLivro = request.toModel(
-				id -> manager.find(Autor.class, id),
-				id -> manager.find(Categoria.class, id)
+				id -> autorRepository.findById(id).get(),
+				id -> categoriaRepository.findById(id).get()
 				);
-		manager.persist(novoLivro);
+		livroRepository.save(novoLivro);
 		return novoLivro.toString();
 	}
 
