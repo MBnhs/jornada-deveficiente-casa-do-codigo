@@ -23,6 +23,7 @@ public class LivrosController {
 
 	public LivrosController(AutorRepository autorRepository,
 							CategoriaRepository categoriaRepository, LivroRepository livroRepository) {
+		super();
 		this.autorRepository = autorRepository;
 		this.categoriaRepository = categoriaRepository;
 		this.livroRepository = livroRepository;
