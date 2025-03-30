@@ -25,7 +25,6 @@ public class LivrosController {
 	}
 
 	@PostMapping(value = "/livros")
-	@Transactional
 	//1
 	public String cria(@RequestBody @Valid NovoLivroRequest request) {
 		return cadastroNovoLivro.executa(request).toString();
