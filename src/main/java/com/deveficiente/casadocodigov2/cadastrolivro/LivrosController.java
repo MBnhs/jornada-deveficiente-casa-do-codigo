@@ -17,18 +17,10 @@ import com.deveficiente.casadocodigov2.novoautor.Autor;
 @RestController
 public class LivrosController {
 	
-	private AutorRepository autorRepository;
-	private CategoriaRepository categoriaRepository;
-	private LivroRepository livroRepository;
 	private CadastroNovoLivro cadastroNovoLivro;
 
-	public LivrosController(AutorRepository autorRepository,
-							CategoriaRepository categoriaRepository, LivroRepository livroRepository,
-							CadastroNovoLivro cadastroNovoLivro) {
+	public LivrosController(CadastroNovoLivro cadastroNovoLivro) {
 		super();
-		this.autorRepository = autorRepository;
-		this.categoriaRepository = categoriaRepository;
-		this.livroRepository = livroRepository;
 		this.cadastroNovoLivro = cadastroNovoLivro;
 	}
 
