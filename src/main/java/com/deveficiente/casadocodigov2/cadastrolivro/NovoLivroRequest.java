@@ -20,7 +20,7 @@ import com.deveficiente.casadocodigov2.novoautor.Autor;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
-public class NovoLivroRequest {
+public class NovoLivroRequest implements DadosNovoLivro{
 
 	@NotBlank
 	@UniqueValue(domainClass = Livro.class, fieldName = "titulo")

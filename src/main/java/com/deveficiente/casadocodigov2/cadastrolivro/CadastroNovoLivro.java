@@ -20,8 +20,8 @@ public class CadastroNovoLivro {
         this.livroRepository = livroRepository;
     }
 
-    public Livro executa(@Valid NovoLivroRequest request) {
-        Livro novoLivro = request.toModel(
+    public Livro executa(@Valid DadosNovoLivro dados) {
+        Livro novoLivro = dados.toModel(
                 id -> autorRepository.findById(id).get(),
                 id -> categoriaRepository.findById(id).get()
         );
