@@ -28,8 +28,8 @@ public class CadastroNovoLivro {
     @Transactional
     public Livro executa(@Valid DadosNovoLivro dados) {
         Livro novoLivro = dados.toModel(
-                id -> buscadorDeEntidades.buscaPorId(Autor.class, id),
-                id -> buscadorDeEntidades.buscaPorId(Categoria.class, id)
+                id -> buscadorDeEntidades.retornaPorId(Autor.class, id),
+                id -> buscadorDeEntidades.retornaPorId(Categoria.class, id)
         );
         livroRepository.save(novoLivro);
 
