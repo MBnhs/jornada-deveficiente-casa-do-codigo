@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.deveficiente.casadocodigov2.cadastrolivro.LivroRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,14 +17,17 @@ import com.deveficiente.casadocodigov2.cadastrolivro.Livro;
 @RestController
 public class DetalheLivroSiteController {
 
-	@PersistenceContext
-	private EntityManager manager;
+	private LivroRepository livroRepository;
+
+	public DetalheLivroSiteController(LivroRepository livroRepository) {
+		this.livroRepository = livroRepository;
+	}
 
 	@GetMapping(value = "/produtos/{id}")
 	public DetalheSiteLivroResponse detalhe(@PathVariable("id") Long id) {
 
 		// 1
-		Livro livroBuscado = Optional.ofNullable(manager.find(Livro.class, id))
+		Livro livroBuscado = Optional.ofNullable(livroRepository.findById(id).get())
 				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
 		// 1
