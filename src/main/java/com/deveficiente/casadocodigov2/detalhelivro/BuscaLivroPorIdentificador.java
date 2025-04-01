@@ -12,6 +12,7 @@ public class BuscaLivroPorIdentificador {
     private BuscadorDeEntidades buscadorDeEntidades;
 
     public BuscaLivroPorIdentificador(BuscadorDeEntidades buscadorDeEntidades) {
+        super();
         this.buscadorDeEntidades = buscadorDeEntidades;
     }
 
