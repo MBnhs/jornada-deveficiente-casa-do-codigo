@@ -12,7 +12,7 @@ import com.deveficiente.casadocodigov2.compartilhado.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
-public class NovoCupomRequest {
+public class NovoCupomRequest implements DadosNovoCupom{
 
 	@NotBlank
 	@UniqueValue(domainClass = Cupom.class,fieldName = "codigo")

@@ -5,6 +5,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import com.deveficiente.casadocodigov2.fechamentocompra.CupomRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,14 +16,15 @@ public class NovoCupomController {
 	@PersistenceContext
 	private EntityManager manager;
 
+	private CadastroNovoCupom cadastroNovoCupom;
+
+	public NovoCupomController(CadastroNovoCupom cadastroNovoCupom) {
+		this.cadastroNovoCupom = cadastroNovoCupom;
+	}
+
 	@PostMapping(value = "/cupons")
-	@Transactional
 	public String cria(@RequestBody @Valid NovoCupomRequest request) {
-		
-		Cupom novoCupom = request.toModel();
-		manager.persist(novoCupom);
-		
-		return novoCupom.toString();
+		return cadastroNovoCupom.executa(request).toString();
 	}
 
 }
