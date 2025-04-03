@@ -4,6 +4,7 @@ import com.deveficiente.casadocodigov2.fechamentocompra.CupomRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 @Service
 public class CadastroNovoCupom {
@@ -16,7 +17,7 @@ public class CadastroNovoCupom {
     }
 
     @Transactional
-    public Cupom executa(DadosNovoCupom dados) {
+    public Cupom executa(@Valid DadosNovoCupom dados) {
         Cupom novoCupom = dados.toModel();
         cupomRepository.save(novoCupom);
         return novoCupom;

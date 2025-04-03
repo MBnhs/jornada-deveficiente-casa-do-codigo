@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class NovoCupomController {
 
-	@PersistenceContext
-	private EntityManager manager;
-
 	private CadastroNovoCupom cadastroNovoCupom;
 
 	public NovoCupomController(CadastroNovoCupom cadastroNovoCupom) {
+		super();
 		this.cadastroNovoCupom = cadastroNovoCupom;
 	}
 
