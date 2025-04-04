@@ -10,6 +10,7 @@ public class CadastroNovoEstado {
     private BuscadorDeEntidades buscadorDeEntidades;
 
     public CadastroNovoEstado(EstadoRepository estadoRepository, BuscadorDeEntidades buscadorDeEntidades) {
+        super();
         this.estadoRepository = estadoRepository;
         this.buscadorDeEntidades = buscadorDeEntidades;
     }

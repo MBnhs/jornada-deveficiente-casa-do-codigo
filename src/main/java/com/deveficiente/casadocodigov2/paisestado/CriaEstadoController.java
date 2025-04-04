@@ -15,6 +15,7 @@ public class CriaEstadoController {
 	private CadastroNovoEstado cadastroNovoEstado;
 
 	public CriaEstadoController(CadastroNovoEstado cadastroNovoEstado) {
+		super();
 		this.cadastroNovoEstado = cadastroNovoEstado;
 	}
 
