@@ -20,8 +20,7 @@ public class CriaEstadoController {
 	}
 
 	@PostMapping(value = "/estados")
-	@Transactional
-	public String cria(@RequestBody @Valid NovoEstadoRequest request) {		
+	public String cria(@RequestBody @Valid NovoEstadoRequest request) {
 		return cadastroNovoEstado.executa(request).toString();
 	}
 
