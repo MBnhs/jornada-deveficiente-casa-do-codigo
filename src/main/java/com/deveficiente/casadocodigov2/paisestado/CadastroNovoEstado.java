@@ -4,6 +4,7 @@ import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidades;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 @Service
 public class CadastroNovoEstado {
@@ -18,7 +19,7 @@ public class CadastroNovoEstado {
     }
 
     @Transactional
-    public Estado executa(DadosNovoEstado dados) {
+    public Estado executa(@Valid DadosNovoEstado dados) {
         return estadoRepository.save(dados.toModel(buscadorDeEntidades));
     }
 }
