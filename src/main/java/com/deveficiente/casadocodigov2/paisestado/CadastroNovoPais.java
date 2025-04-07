@@ -13,6 +13,7 @@ public class CadastroNovoPais {
     private PaisRepository paisRepository;
 
     public CadastroNovoPais(PaisRepository paisRepository) {
+        super();
         this.paisRepository = paisRepository;
     }
 
