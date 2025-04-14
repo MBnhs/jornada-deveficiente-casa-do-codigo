@@ -48,7 +48,6 @@ public class FechaCompraParte1Controller {
 	public String cria(@RequestBody @Valid NovaCompraRequest request) {
 		
 		Compra novaCompra = request.toModel(manager,cupomRepository);
-		manager.persist(novaCompra);
 		compraRepository.save(novaCompra);
 		return novaCompra.toString();
 	}
