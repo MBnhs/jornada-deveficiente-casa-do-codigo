@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidades;
 import com.deveficiente.casadocodigov2.cadastrolivro.Livro;
 import com.deveficiente.casadocodigov2.compartilhado.ExistsId;
 import com.deveficiente.casadocodigov2.compartilhado.Generated;
@@ -38,5 +39,9 @@ public class NovoPedidoItemRequest {
 		@NotNull Livro livro = manager.find(Livro.class, idLivro);
 		return new ItemPedido(livro,quantidade);
 	}
-	
+
+	public ItemPedido toModel(BuscadorDeEntidades buscadorDeEntidades) {
+		@NotNull Livro livro = buscadorDeEntidades.retornaPorId(Livro.class, idLivro);
+		return new ItemPedido(livro,quantidade);
+	}
 }

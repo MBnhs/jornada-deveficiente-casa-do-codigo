@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidades;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.internal.constraintvalidators.hv.br.CNPJValidator;
@@ -153,6 +154,34 @@ public class NovaCompraRequest {
 		
 		
 		
+		return compra;
+	}
+
+	public Compra toModel(BuscadorDeEntidades buscadorDeEntidades, CupomRepository cupomRepository) {
+		@NotNull
+		//1
+		Pais pais = buscadorDeEntidades.retornaPorId(Pais.class, idPais);
+
+		//1
+		//1
+		Function<Compra, Pedido> funcaoCriacaoPedido = pedido.toModel(buscadorDeEntidades);
+
+		//1 funcao como argumento
+		Compra compra = new Compra(email, nome, sobrenome, documento, endereco,
+				complemento, pais, telefone, cep,funcaoCriacaoPedido);
+		//1
+		if (idEstado != null) {
+			compra.setEstado(buscadorDeEntidades.retornaPorId(Estado.class, idEstado));
+		}
+
+		//1
+		if(StringUtils.hasText(codigoCupom)) {
+			Cupom cupom = cupomRepository.getByCodigo(codigoCupom);
+			compra.aplicaCupom(cupom);
+		}
+
+
+
 		return compra;
 	}
 

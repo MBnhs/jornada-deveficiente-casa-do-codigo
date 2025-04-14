@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidades;
 import org.springframework.util.Assert;
 
 import com.deveficiente.casadocodigov2.compartilhado.Generated;
@@ -53,6 +54,18 @@ public class NovoPedidoRequest {
 			return pedido;			
 		};
 						
+	}
+
+	public Function<Compra,Pedido> toModel(BuscadorDeEntidades buscadorDeEntidades) {
+
+		Set<ItemPedido> itensCalculados = itens.stream().map(item -> item.toModel(buscadorDeEntidades)).collect(Collectors.toSet());
+
+		return (compra) -> {
+			Pedido pedido = new Pedido(compra,itensCalculados);
+			Assert.isTrue(pedido.totalIgual(total),"Olha, o total("+total+") enviado não corresponde ao total real("+pedido.total()+"). Itens = "+itensCalculados);
+			return pedido;
+		};
+
 	}
 
 

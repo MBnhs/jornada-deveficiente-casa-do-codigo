@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class FechaCompraParte1Controller {
 	
 	private EstadoPertenceAPaisValidator estadoPertenceAPaisValidator;
-	@PersistenceContext
-	private EntityManager manager;
 
 	private BuscadorDeEntidades buscadorDeEntidades;
 	private CupomValidoValidator cupomValidoValidator;
@@ -47,7 +45,7 @@ public class FechaCompraParte1Controller {
 	@Transactional
 	public String cria(@RequestBody @Valid NovaCompraRequest request) {
 		
-		Compra novaCompra = request.toModel(manager,cupomRepository);
+		Compra novaCompra = request.toModel(buscadorDeEntidades,cupomRepository);
 		compraRepository.save(novaCompra);
 		return novaCompra.toString();
 	}
