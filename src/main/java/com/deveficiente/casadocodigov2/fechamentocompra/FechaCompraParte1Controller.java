@@ -5,7 +5,9 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidades;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomMapEditor;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -16,14 +18,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FechaCompraParte1Controller {
 	
-	@Autowired
 	private EstadoPertenceAPaisValidator estadoPertenceAPaisValidator;
 	@PersistenceContext
 	private EntityManager manager;
-	@Autowired
-	private CupomRepository cupomRepository;
-	@Autowired
+
+	private BuscadorDeEntidades buscadorDeEntidades;
 	private CupomValidoValidator cupomValidoValidator;
+	private CompraRepository compraRepository;
+	private CupomRepository cupomRepository;
+
+	public FechaCompraParte1Controller(EstadoPertenceAPaisValidator estadoPertenceAPaisValidator,
+									   BuscadorDeEntidades buscadorDeEntidades,
+									   CupomValidoValidator cupomValidoValidator,
+									   CompraRepository compraRepository,
+									   CupomRepository cupomRepository) {
+		this.estadoPertenceAPaisValidator = estadoPertenceAPaisValidator;
+		this.buscadorDeEntidades = buscadorDeEntidades;
+		this.cupomValidoValidator = cupomValidoValidator;
+		this.compraRepository = compraRepository;
+	}
 
 	@InitBinder
 	public void init(WebDataBinder binder) {
@@ -36,7 +49,7 @@ public class FechaCompraParte1Controller {
 		
 		Compra novaCompra = request.toModel(manager,cupomRepository);
 		manager.persist(novaCompra);
-		
+		compraRepository.save(novaCompra);
 		return novaCompra.toString();
 	}
 	
