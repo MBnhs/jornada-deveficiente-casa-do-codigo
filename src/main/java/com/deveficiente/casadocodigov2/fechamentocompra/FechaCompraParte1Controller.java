@@ -17,24 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FechaCompraParte1Controller {
-	
-	private EstadoPertenceAPaisValidator estadoPertenceAPaisValidator;
 
-	private BuscadorDeEntidades buscadorDeEntidades;
+	private EstadoPertenceAPaisValidator estadoPertenceAPaisValidator;
 	private CupomValidoValidator cupomValidoValidator;
-	private CompraRepository compraRepository;
-	private CupomRepository cupomRepository;
+	private FechaCompra fechaCompra;
 
 	public FechaCompraParte1Controller(EstadoPertenceAPaisValidator estadoPertenceAPaisValidator,
-									   BuscadorDeEntidades buscadorDeEntidades,
 									   CupomValidoValidator cupomValidoValidator,
-									   CompraRepository compraRepository,
-									   CupomRepository cupomRepository) {
+									   FechaCompra fechaCompra) {
 		this.estadoPertenceAPaisValidator = estadoPertenceAPaisValidator;
-		this.buscadorDeEntidades = buscadorDeEntidades;
 		this.cupomValidoValidator = cupomValidoValidator;
-		this.compraRepository = compraRepository;
+		this.fechaCompra = fechaCompra;
 	}
+
 
 	@InitBinder
 	public void init(WebDataBinder binder) {
@@ -42,11 +37,8 @@ public class FechaCompraParte1Controller {
 	}
 
 	@PostMapping(value = "/compras")
-	@Transactional
 	public String cria(@RequestBody @Valid NovaCompraRequest request) {
-		
-		Compra novaCompra = request.toModel(buscadorDeEntidades,cupomRepository);
-		compraRepository.save(novaCompra);
+		Compra novaCompra = fechaCompra.executa(request);
 		return novaCompra.toString();
 	}
 	

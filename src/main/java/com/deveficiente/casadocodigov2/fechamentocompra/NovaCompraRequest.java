@@ -25,7 +25,7 @@ import com.deveficiente.casadocodigov2.compartilhado.Generated;
 import com.deveficiente.casadocodigov2.paisestado.Estado;
 import com.deveficiente.casadocodigov2.paisestado.Pais;
 
-public class NovaCompraRequest {
+public class NovaCompraRequest implements DadosNovaCompra {
 
 	@Email
 	@NotBlank
