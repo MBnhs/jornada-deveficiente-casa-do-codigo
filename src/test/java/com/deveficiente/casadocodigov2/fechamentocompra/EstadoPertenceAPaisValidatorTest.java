@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidadesJPA;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,8 +35,7 @@ public class EstadoPertenceAPaisValidatorTest {
 		
 		
 		Errors errors = new BeanPropertyBindingResult(request , "target");
-		EstadoPertenceAPaisValidator validador = new EstadoPertenceAPaisValidator(
-				manager);		
+		EstadoPertenceAPaisWebValidator validador = new EstadoPertenceAPaisWebValidator(new ValidaEstadoPertenceAPais(new BuscadorDeEntidadesJPA(manager)));
 		validador.validate(request, errors);
 		
 		Assertions.assertFalse(errors.hasErrors());
@@ -53,8 +53,8 @@ public class EstadoPertenceAPaisValidatorTest {
 		
 		
 		Errors errors = new BeanPropertyBindingResult(request , "target");
-		EstadoPertenceAPaisValidator validador = new EstadoPertenceAPaisValidator(
-				manager);		
+		EstadoPertenceAPaisWebValidator validador = new EstadoPertenceAPaisWebValidator(
+				new ValidaEstadoPertenceAPais(new BuscadorDeEntidadesJPA(manager)));
 		validador.validate(request, errors);
 		
 		Assertions.assertTrue(errors.getAllErrors().size() == 1);
@@ -66,8 +66,8 @@ public class EstadoPertenceAPaisValidatorTest {
 	void teste3() throws Exception {				
 		
 		Errors errors = new BeanPropertyBindingResult(request , "target");
-		EstadoPertenceAPaisValidator validador = new EstadoPertenceAPaisValidator(
-				manager);		
+		EstadoPertenceAPaisWebValidator validador = new EstadoPertenceAPaisWebValidator(
+				new ValidaEstadoPertenceAPais(new BuscadorDeEntidadesJPA(manager)));
 		validador.validate(request, errors);
 		
 		Assertions.assertFalse(errors.hasErrors());
@@ -80,8 +80,8 @@ public class EstadoPertenceAPaisValidatorTest {
 		Errors errors = new BeanPropertyBindingResult(request , "target");
 		errors.reject("codigoQualquer");
 		
-		EstadoPertenceAPaisValidator validador = new EstadoPertenceAPaisValidator(
-				manager);		
+		EstadoPertenceAPaisWebValidator validador = new EstadoPertenceAPaisWebValidator(
+				new ValidaEstadoPertenceAPais(new BuscadorDeEntidadesJPA(manager)));
 		validador.validate(request, errors);
 		
 		Assertions.assertTrue(errors.getAllErrors().size() == 1);

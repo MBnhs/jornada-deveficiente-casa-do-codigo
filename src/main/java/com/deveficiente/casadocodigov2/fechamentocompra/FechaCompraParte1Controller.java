@@ -1,14 +1,7 @@
 package com.deveficiente.casadocodigov2.fechamentocompra;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidades;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomMapEditor;
-import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FechaCompraParte1Controller {
 
-	private EstadoPertenceAPaisValidator estadoPertenceAPaisValidator;
+	private EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator;
 	private CupomValidoValidator cupomValidoValidator;
 	private FechaCompra fechaCompra;
 
-	public FechaCompraParte1Controller(EstadoPertenceAPaisValidator estadoPertenceAPaisValidator,
+	public FechaCompraParte1Controller(EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator,
 									   CupomValidoValidator cupomValidoValidator,
 									   FechaCompra fechaCompra) {
 		this.estadoPertenceAPaisValidator = estadoPertenceAPaisValidator;

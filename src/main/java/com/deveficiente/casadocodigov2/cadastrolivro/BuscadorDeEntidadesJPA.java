@@ -14,6 +14,11 @@ public class BuscadorDeEntidadesJPA implements BuscadorDeEntidades {
     @Autowired
     private EntityManager manager;
 
+    public BuscadorDeEntidadesJPA(EntityManager manager) {
+        this.manager = manager;
+    }
+
+
     @Override
     public <T> T retornaPorId(Class<T> klass, Long id) {
         T entidade = manager.find(klass, id);

@@ -5,4 +5,10 @@ import com.deveficiente.casadocodigov2.cadastrolivro.BuscadorDeEntidades;
 public interface DadosNovaCompra {
 
     public Compra toModel(BuscadorDeEntidades buscadorDeEntidades, CupomRepository cupomRepository);
+
+    boolean temEstado();
+
+    Long getIdPais();
+
+    Long getIdEstado();
 }
