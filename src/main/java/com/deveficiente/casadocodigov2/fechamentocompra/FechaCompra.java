@@ -12,13 +12,13 @@ public class FechaCompra {
     private EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator;
 
     private BuscadorDeEntidades buscadorDeEntidades;
-    private CupomValidoValidator cupomValidoValidator;
+    private CupomValidoWebValidator cupomValidoValidator;
     private CompraRepository compraRepository;
     private CupomRepository cupomRepository;
 
     public FechaCompra(EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator,
                        BuscadorDeEntidades buscadorDeEntidades,
-                       CupomValidoValidator cupomValidoValidator,
+                       CupomValidoWebValidator cupomValidoValidator,
                        CompraRepository compraRepository,
                        CupomRepository cupomRepository) {
         this.estadoPertenceAPaisValidator = estadoPertenceAPaisValidator;

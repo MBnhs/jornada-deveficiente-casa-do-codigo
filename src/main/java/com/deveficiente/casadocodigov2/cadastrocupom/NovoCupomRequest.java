@@ -2,6 +2,7 @@ package com.deveficiente.casadocodigov2.cadastrocupom;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
@@ -39,5 +40,11 @@ public class NovoCupomRequest implements DadosNovoCupom{
 	public Cupom toModel() {
 		return new Cupom(codigo,percentualDesconto,validade);
 	}
+
+	@Override
+	public Optional<String> getCodigoCupom() {
+		return Optional.ofNullable(codigo);
+	}
+
 
 }

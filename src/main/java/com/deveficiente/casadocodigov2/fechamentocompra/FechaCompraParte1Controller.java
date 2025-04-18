@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class FechaCompraParte1Controller {
 
 	private EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator;
-	private CupomValidoValidator cupomValidoValidator;
+	private CupomValidoWebValidator cupomValidoValidator;
 	private FechaCompra fechaCompra;
 
 	public FechaCompraParte1Controller(EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator,
-									   CupomValidoValidator cupomValidoValidator,
+									   CupomValidoWebValidator cupomValidoValidator,
 									   FechaCompra fechaCompra) {
 		this.estadoPertenceAPaisValidator = estadoPertenceAPaisValidator;
 		this.cupomValidoValidator = cupomValidoValidator;
