@@ -14,7 +14,7 @@ import org.springframework.validation.Errors;
 
 import com.deveficiente.casadocodigov2.cadastrocupom.Cupom;
 
-public class CupomValidoValidatorTest {
+public class CupomValidoWebValidatorTest {
 
 	private CupomRepository cupomRepository  = Mockito.mock(CupomRepository.class);
 	private List<NovoPedidoItemRequest> itens = List.of(new NovoPedidoItemRequest(1l, 10));
@@ -35,7 +35,7 @@ public class CupomValidoValidatorTest {
 		
 		
 		Errors errors = new BeanPropertyBindingResult(request , "target");
-		CupomValidoWebValidator validador = new CupomValidoWebValidator(cupomRepository);
+		CupomValidoWebValidator validador = new CupomValidoWebValidator(new ValidaCupom(cupomRepository));
 		validador.validate(request, errors);
 		
 		Assertions.assertTrue(errors.getAllErrors().size() == 1);
@@ -52,7 +52,7 @@ public class CupomValidoValidatorTest {
 		
 		
 		Errors errors = new BeanPropertyBindingResult(request , "target");
-		CupomValidoWebValidator validador = new CupomValidoWebValidator(cupomRepository);
+		CupomValidoWebValidator validador = new CupomValidoWebValidator(new ValidaCupom(cupomRepository));
 		validador.validate(request, errors);
 		
 		Assertions.assertFalse(errors.hasErrors());
@@ -62,7 +62,7 @@ public class CupomValidoValidatorTest {
 	@DisplayName("deveria passar caso nao tenha codigo de cupom")
 	void teste3() throws Exception {
 		Errors errors = new BeanPropertyBindingResult(request , "target");
-		CupomValidoWebValidator validador = new CupomValidoWebValidator(cupomRepository);
+		CupomValidoWebValidator validador = new CupomValidoWebValidator(new ValidaCupom(cupomRepository));
 		validador.validate(request, errors);
 		
 		Assertions.assertFalse(errors.hasErrors());
@@ -74,7 +74,7 @@ public class CupomValidoValidatorTest {
 		Errors errors = new BeanPropertyBindingResult(request , "target");
 		errors.reject("codigo");
 		
-		CupomValidoWebValidator validador = new CupomValidoWebValidator(cupomRepository);
+		CupomValidoWebValidator validador = new CupomValidoWebValidator(new ValidaCupom(cupomRepository));
 		validador.validate(request, errors);
 		
 		Assertions.assertTrue(errors.getAllErrors().size() == 1);

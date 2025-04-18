@@ -41,10 +41,4 @@ public class NovoCupomRequest implements DadosNovoCupom{
 		return new Cupom(codigo,percentualDesconto,validade);
 	}
 
-	@Override
-	public Optional<String> getCodigoCupom() {
-		return Optional.ofNullable(codigo);
-	}
-
-
 }
