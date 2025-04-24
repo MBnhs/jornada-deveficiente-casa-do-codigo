@@ -11,6 +11,7 @@ public class ValidaEstadoPertenceAPais {
     private BuscadorDeEntidades buscadorDeEntidades;
 
     public ValidaEstadoPertenceAPais(BuscadorDeEntidades buscadorDeEntidades) {
+        super();
         this.buscadorDeEntidades = buscadorDeEntidades;
     }
 

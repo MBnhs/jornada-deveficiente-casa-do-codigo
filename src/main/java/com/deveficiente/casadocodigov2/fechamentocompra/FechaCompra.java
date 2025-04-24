@@ -12,24 +12,37 @@ public class FechaCompra {
     private EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator;
 
     private BuscadorDeEntidades buscadorDeEntidades;
-    private CupomValidoWebValidator cupomValidoValidator;
     private CompraRepository compraRepository;
     private CupomRepository cupomRepository;
+    private ValidaCupom validaCupom;
+    private ValidaEstadoPertenceAPais validaEstadoPertenceAPais;
 
     public FechaCompra(EstadoPertenceAPaisWebValidator estadoPertenceAPaisValidator,
                        BuscadorDeEntidades buscadorDeEntidades,
-                       CupomValidoWebValidator cupomValidoValidator,
                        CompraRepository compraRepository,
-                       CupomRepository cupomRepository) {
+                       CupomRepository cupomRepository,
+                       ValidaCupom validaCupom,
+                       ValidaEstadoPertenceAPais validaEstadoPertenceAPais) {
         this.estadoPertenceAPaisValidator = estadoPertenceAPaisValidator;
         this.buscadorDeEntidades = buscadorDeEntidades;
-        this.cupomValidoValidator = cupomValidoValidator;
         this.compraRepository = compraRepository;
         this.cupomRepository = cupomRepository;
+        this.validaCupom = validaCupom;
+        this.validaEstadoPertenceAPais = validaEstadoPertenceAPais;
+
     }
 
     @Transactional
     public Compra executa(@Valid DadosNovaCompra dados) {
+
+        validaCupom.valida(dados, () -> {
+            throw new IllegalArgumentException("Neste ponto do fluxo o cupom devia estar válido");
+        });
+
+        validaEstadoPertenceAPais.valida(dados, () -> {
+            throw new IllegalArgumentException("Neste ponto do fluxo a validacao do estado pertencente ao pais deveria estar feita");
+        });
+
         Compra novaCompra = dados.toModel(buscadorDeEntidades,cupomRepository);
         compraRepository.save(novaCompra);
         return novaCompra;
