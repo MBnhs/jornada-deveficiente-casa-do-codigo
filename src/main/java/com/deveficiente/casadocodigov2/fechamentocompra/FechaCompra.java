@@ -23,6 +23,7 @@ public class FechaCompra {
                        CupomRepository cupomRepository,
                        ValidaCupom validaCupom,
                        ValidaEstadoPertenceAPais validaEstadoPertenceAPais) {
+        super();
         this.estadoPertenceAPaisValidator = estadoPertenceAPaisValidator;
         this.buscadorDeEntidades = buscadorDeEntidades;
         this.compraRepository = compraRepository;
